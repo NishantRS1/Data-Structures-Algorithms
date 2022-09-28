@@ -1,0 +1,45 @@
+
+// we have to create a manual comparator to solve this problem . I was knowing
+   how to create a manual comparator in c++ so done.learning on java also to 
+   create a manual comparator.
+
+#include<iostream>
+#include<bits/stdc++.h>
+#define ll long long int 
+#define endl "\n"
+using namespace std;
+bool cmp(pair<ll,ll> &a, pair<ll,ll> &b){
+    return a.second>b.second;
+}
+int main()
+{
+    ll n;
+    cin>>n;
+    vector<ll> arr(n);
+    for(int i=0;i<n;i++) cin>>arr[i];
+    vector<pair<ll,ll>> ans;
+    map<ll,ll>mp;
+    for(int i=0;i<n;i++){
+        if(mp.find(arr[i])!=mp.end())
+        mp[arr[i]]++;
+        else
+        mp[arr[i]]=1;
+    }
+    for(auto x: mp)
+    {
+        ll first=x.first;
+        ll second=x.second;
+        pair<ll,ll> p;
+        p.first=first;
+        p.second=second;
+        ans.push_back(p);
+    }
+    sort(ans.begin(),ans.end(),cmp);
+    for(int i=0;i<ans.size();i++){
+        
+        ll x=ans[i].second;
+        while(x--)
+        cout<<ans[i].first<<" ";
+    }
+    cout<<endl;
+}
